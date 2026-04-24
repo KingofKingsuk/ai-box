@@ -1,9 +1,17 @@
 import { put } from "@vercel/blob";
+import fs from 'fs';
+import path from 'path';
 
-// Upload your image file
-const file = await fetch('path/to/your/PI Case website.png'); // or use file from disk
-const { url } = await put('PI-Case-website.png', file, { 
-  access: 'public' 
+// Get the path to your image (make sure this matches your filename)
+const imagePath = path.join(process.cwd(), 'PI Case website.png');
+
+// Read the image file
+const imageBuffer = fs.readFileSync(imagePath);
+
+// Upload with public access
+const { url } = await put('PI-Case-website.png', imageBuffer, {
+  access: 'public',
 });
 
+console.log('✅ Upload successful!');
 console.log('Your image URL is:', url);
