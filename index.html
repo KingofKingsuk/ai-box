@@ -261,6 +261,15 @@
             .container { padding: 0 20px; }
             .privacy-zone, .build-section { padding: 32px 20px; }
         }
+
+        /* Image fallback styling */
+        .fallback-text {
+            background: #1a1a2e;
+            padding: 40px 20px;
+            border-radius: 24px;
+            margin-bottom: 16px;
+            font-family: monospace;
+        }
     </style>
 </head>
 <body>
@@ -291,8 +300,11 @@
         </div>
         <div class="hero-right">
             <div class="device-mock">
-                <!-- Your custom Raspberry Pi case image -->
-                <img src="https://i.postimg.cc/2yBymHZh/PI-Case-website.png" alt="Alex Personal AI - Custom 3D Printed Raspberry Pi Enclosure">
+                <!-- Your Raspberry Pi Case Image - Using direct link with anti-hotlink workaround -->
+                <img src="https://i.postimg.cc/2yBymHZh/PI-Case-website.png" 
+                     alt="Alex Personal AI - Custom 3D Printed Raspberry Pi Enclosure"
+                     referrerpolicy="no-referrer"
+                     onerror="this.onerror=null; this.src='https://images.weserv.nl/?url=i.postimg.cc/2yBymHZh/PI-Case-website.png'; this.onerror=function(){this.parentElement.innerHTML += '<div class=\"fallback-text\">📦 Raspberry Pi 4B Case<br>⬇️ <a href=\\\"https://i.postimg.cc/2yBymHZh/PI-Case-website.png\\\" target=\\\"_blank\\\" style=\\\"color:#7B61FF\\\">Click here to view the enclosure image</a></div>'; this.style.display='none';}">
                 <div style="font-weight: 600; margin: 8px 0;">Custom 3D-printed enclosure</div>
                 <div style="font-size: 0.85rem; opacity: 0.8;">Raspberry Pi 4B | TFT display | Active cooling</div>
                 <div style="margin-top: 20px; background: #00000030; border-radius: 32px; padding: 8px;">🎙️ Bluetooth headset | 👓 Meta glasses ready</div>
@@ -301,6 +313,7 @@
         </div>
     </div>
 
+    <!-- Features Grid (same as before) -->
     <div class="features-grid">
         <div class="feature-card">
             <div class="feature-icon">🎙️</div>
@@ -334,6 +347,7 @@
         </div>
     </div>
 
+    <!-- Privacy Zone -->
     <div class="privacy-zone" id="privacy">
         <div class="shield">🛡️🔒</div>
         <h2>Your data is <span class="glow-text">never</span> for sale. Or for the cloud.</h2>
@@ -345,6 +359,7 @@
         </div>
     </div>
 
+    <!-- Build Section -->
     <div class="build-section" id="build">
         <h2 class="section-title" style="margin-bottom: 24px;">🧩 Build your Alex AI agent</h2>
         <p style="text-align: center; margin-bottom: 40px;">Open hardware, fully documented. 3D print the case, solder nothing — just stack components.</p>
@@ -378,6 +393,7 @@
         </div>
     </div>
 
+    <!-- Specs Section -->
     <div style="margin: 60px 0;" id="specs">
         <div class="section-title">🔊 How it works — wear & speak</div>
         <div style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: center;">
@@ -394,6 +410,7 @@
         </div>
     </div>
 
+    <!-- Power & WiFi -->
     <div style="background: linear-gradient(120deg, #070c14, #03070f); border-radius: 48px; padding: 40px; margin: 40px 0;">
         <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 30px; justify-content: space-between;">
             <div>
@@ -407,6 +424,7 @@
         </div>
     </div>
 
+    <!-- CTA Footer -->
     <div style="text-align: center; margin: 70px 0 30px;">
         <div class="badge" style="margin: 0 auto 20px;">open source · no cloud · your second brain</div>
         <h2 style="font-size: 2.2rem;">Start building your private AI agent today.</h2>
