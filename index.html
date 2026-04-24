@@ -198,6 +198,77 @@
             color: #b9ceff;
         }
 
+        /* Registration Form Styles */
+        .register-section {
+            background: linear-gradient(145deg, #0a0f1c 0%, #03060c 100%);
+            border-radius: 48px;
+            padding: 56px 40px;
+            margin: 80px 0;
+            border: 1px solid #2a2f3f;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #b9ceff;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(10, 20, 30, 0.8);
+            border: 1px solid rgba(123, 97, 255, 0.3);
+            border-radius: 16px;
+            color: #eef5ff;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #7B61FF;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .submit-status {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .submit-status.success {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid #22c55e;
+            color: #22c55e;
+            display: block;
+        }
+
+        .submit-status.error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            color: #ef4444;
+            display: block;
+        }
+
         .privacy-zone {
             background: linear-gradient(145deg, #0a0f1c 0%, #03060c 100%);
             border-radius: 48px;
@@ -259,7 +330,8 @@
         @media (max-width: 800px) {
             .hero h1 { font-size: 2.4rem; }
             .container { padding: 0 20px; }
-            .privacy-zone, .build-section { padding: 32px 20px; }
+            .privacy-zone, .build-section, .register-section { padding: 32px 20px; }
+            .form-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -270,12 +342,12 @@
         <div class="logo">Alex<span> Personal AI</span></div>
         <div class="nav-links">
             <a href="#vision">Vision</a>
+            <a href="#register">Register</a>
             <a href="#build">Build</a>
             <a href="#privacy">Privacy</a>
-            <a href="#specs">Tech</a>
         </div>
         <div>
-            <a href="#build" class="btn-outline" style="text-decoration: none;">Get the blueprint</a>
+            <a href="#register" class="btn-outline" style="text-decoration: none;">Register Interest →</a>
         </div>
     </nav>
 
@@ -285,13 +357,12 @@
             <h1>AI that walks with you.<br><span class="glow-text">No cloud. No leaks.</span></h1>
             <p>Alex Personal AI is a private, wearable intelligence built on Raspberry Pi. Speech-to-text, local inference, Bluetooth headset & Meta glasses ready. Always with you, never sharing your data.</p>
             <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-                <button class="btn-primary" onclick="scrollToBuild()">⚡ Build your own →</button>
+                <button class="btn-primary" onclick="document.getElementById('register').scrollIntoView({ behavior: 'smooth' })">📝 Register Interest →</button>
                 <button class="btn-outline" onclick="alert('📡 Alex runs fully offline — only you have access. Connect via Bluetooth or WiFi hotspot.')">🔒 How privacy works</button>
             </div>
         </div>
         <div class="hero-right">
             <div class="device-mock">
-                <!-- Your working Raspberry Pi image from Vercel Blob -->
                 <img src="https://dvzawnswillq8rz3.public.blob.vercel-storage.com/PI%20Case%20website.png" alt="Alex Personal AI - Custom 3D Printed Raspberry Pi Enclosure">
                 <div style="font-weight: 600; margin: 8px 0;">Custom 3D-printed enclosure</div>
                 <div style="font-size: 0.85rem; opacity: 0.8;">Raspberry Pi 4B | TFT display | Active cooling</div>
@@ -299,6 +370,36 @@
                 <div style="margin-top: 16px;">🔋 10,000 mAh power bank · 12+ hrs</div>
             </div>
         </div>
+    </div>
+
+    <!-- REGISTRATION SECTION -->
+    <div class="register-section" id="register">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <div class="badge" style="margin: 0 auto 20px;">🚀 Be the first to know</div>
+            <h2 style="font-size: 2rem; margin-bottom: 16px;">Register Your Interest</h2>
+            <p style="color: #b9ceff; max-width: 600px; margin: 0 auto;">Get early access, exclusive updates, and help shape the future of Alex Personal AI.</p>
+        </div>
+
+        <form id="registerForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="requests">Feature Requests / Questions</label>
+                <textarea id="requests" name="requests" placeholder="What would you like to see in Alex Personal AI? Any specific features or questions?"></textarea>
+            </div>
+            <div style="text-align: center;">
+                <button type="submit" class="btn-primary" style="width: auto; min-width: 200px;">📝 Submit Interest →</button>
+            </div>
+            <div id="submitStatus" class="submit-status"></div>
+        </form>
     </div>
 
     <div class="features-grid">
@@ -429,6 +530,56 @@
     function showPrintGuide() {
         alert("🎛️ 3D PRINT FILES (ready to slice):\n\n- rpi4_case_body.stl (print floor down, 0.25mm layer)\n- rpi4_case_front_cover.stl (front face down)\n- Infill: 50% gyroid | Supports: NO\n- Material: PLA or PETG\n\nThese files match the CAD from the corrected PDF: TFT aperture (74x46mm), M3 nut pockets, cooler vents, zip tie slots.\n\nSend to your 3D printer or a print service.");
     }
+
+    // Form submission handling
+    document.getElementById('registerForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const requests = document.getElementById('requests').value;
+        const statusDiv = document.getElementById('submitStatus');
+        
+        // Show loading state
+        statusDiv.textContent = 'Submitting...';
+        statusDiv.className = 'submit-status';
+        statusDiv.style.display = 'block';
+        
+        try {
+            // Send to your email via FormSubmit.co (free, no backend needed)
+            const response = await fetch('https://formsubmit.co/ajax/admin@ai-box.uk', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    message: `New registration from ${name} (${email})\n\nFeature Requests / Questions:\n${requests || 'None provided'}`,
+                    _subject: `🎉 NEW REGISTRATION: ${name} wants Alex Personal AI!`,
+                    _template: 'table',
+                    _captcha: 'false'
+                })
+            });
+            
+            if (response.ok) {
+                statusDiv.textContent = '✅ Thank you! We\'ll keep you updated about Alex Personal AI.';
+                statusDiv.className = 'submit-status success';
+                document.getElementById('registerForm').reset();
+            } else {
+                throw new Error('Submission failed');
+            }
+        } catch (error) {
+            statusDiv.textContent = '❌ Something went wrong. Please email admin@ai-box.uk directly or try again.';
+            statusDiv.className = 'submit-status error';
+        }
+        
+        // Hide status after 5 seconds
+        setTimeout(() => {
+            statusDiv.style.display = 'none';
+        }, 5000);
+    });
 </script>
 
 </body>
